@@ -39,7 +39,7 @@ public class OPMLParser: NSObject {
 
 }
 
-public extension OPMLParser: XMLParserDelegate {
+extension OPMLParser: XMLParserDelegate {
 
 	func parser(
 		_ parser: XMLParser,
@@ -108,7 +108,7 @@ public extension OPMLParser: XMLParserDelegate {
 		}
 	}
 
-	enum Error: LocalizedError {
+	public enum Error: LocalizedError {
 		var errorDescription: String? {
 			switch self {
 			case .invalidDocument: return "Invalid or missing XML document"
