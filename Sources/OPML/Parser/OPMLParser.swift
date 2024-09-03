@@ -13,7 +13,7 @@ public class OPMLParser: NSObject {
 
 	fileprivate let opmlBuilder = OPMLBuilder()
 
-	func parse() throws -> OPML {
+	public func parse() throws -> OPML {
 		xmlParser.delegate = self
 		let success = xmlParser.parse()
 		if !success {
@@ -41,7 +41,8 @@ public class OPMLParser: NSObject {
 
 extension OPMLParser: XMLParserDelegate {
 
-	func parser(
+
+	public func parser(
 		_ parser: XMLParser,
 		didStartElement elementName: String,
 		namespaceURI: String?,
@@ -61,7 +62,7 @@ extension OPMLParser: XMLParserDelegate {
 		}
 	}
 
-	func parser(
+	public func parser(
 		_ parser: XMLParser,
 		didEndElement elementName: String,
 		namespaceURI: String?,
@@ -79,7 +80,7 @@ extension OPMLParser: XMLParserDelegate {
 		}
 	}
 
-	func parser(_ parser: XMLParser, foundCharacters string: String) {
+	public func parser(_ parser: XMLParser, foundCharacters string: String) {
 		switch currentXMLDOMPath.lastPathComponent {
 		case "title":
 			opmlBuilder.title = string
@@ -109,7 +110,7 @@ extension OPMLParser: XMLParserDelegate {
 	}
 
 	public enum Error: LocalizedError {
-		var errorDescription: String? {
+		public var errorDescription: String? {
 			switch self {
 			case .invalidDocument: return "Invalid or missing XML document"
 			case .parseError(let error): return "XML parsing error: \(error.localizedDescription)"
